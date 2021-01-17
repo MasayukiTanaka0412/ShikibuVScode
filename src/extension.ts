@@ -14,10 +14,10 @@ export function activate(context: vscode.ExtensionContext) {
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('shikibuvscode.loadaudio', () => {
-		// The code you place here will be executed every time your command is executed
+		
+		writeText('Audio recognition starts');
+		
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from ShikibuVSCode!');
 	});
 
 	context.subscriptions.push(disposable);
@@ -25,3 +25,13 @@ export function activate(context: vscode.ExtensionContext) {
 
 // this method is called when your extension is deactivated
 export function deactivate() {}
+
+export function writeText(txtToBeWrttien : string){
+	let editor = vscode.window.activeTextEditor;
+	const textEdits: vscode.TextEdit[] = [];
+	textEdits.push(vscode.TextEdit.insert(editor.selection.active, txtToBeWrttien));
+	textEdits.push(vscode.TextEdit.insert(editor.selection.active, '\r\n'));
+	const workEdits = new vscode.WorkspaceEdit();
+	workEdits.set(editor.document.uri, textEdits); 
+	vscode.workspace.applyEdit(workEdits); 
+}
