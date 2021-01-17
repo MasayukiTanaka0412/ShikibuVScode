@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:shikibuvscode.helloWorld"
+		"onCommand:shikibuvscode.loadaudio"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "shikibuvscode.helloWorld",
-				"title": "Hello World"
+				"command": "shikibuvscode.loadaudio",
+				"title": "Shikibu Load audio file"
 			}
 		]
 	},
