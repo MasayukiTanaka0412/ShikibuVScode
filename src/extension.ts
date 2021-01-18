@@ -1,5 +1,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
+import { write } from 'fs';
 import * as vscode from 'vscode';
 
 // this method is called when your extension is activated
@@ -14,7 +15,10 @@ export function activate(context: vscode.ExtensionContext) {
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('shikibuvscode.loadaudio', () => {
-		
+		let configuration: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('shikibu');
+		let azurespeechkey: string = configuration.AZURE_SPEECH_KEY;
+		writeText('AZURE_SPEECHKEY is ' + azurespeechkey);
+
 		writeText('Audio recognition starts');
 		
 
@@ -28,10 +32,10 @@ export function deactivate() {}
 
 export function writeText(txtToBeWrttien : string){
 	let editor = vscode.window.activeTextEditor;
-	const textEdits: vscode.TextEdit[] = [];
+	let textEdits: vscode.TextEdit[] = [];
 	textEdits.push(vscode.TextEdit.insert(editor.selection.active, txtToBeWrttien));
 	textEdits.push(vscode.TextEdit.insert(editor.selection.active, '\r\n'));
-	const workEdits = new vscode.WorkspaceEdit();
+	let workEdits = new vscode.WorkspaceEdit();
 	workEdits.set(editor.document.uri, textEdits); 
 	vscode.workspace.applyEdit(workEdits); 
 }

@@ -19,7 +19,17 @@
 				"command": "shikibuvscode.loadaudio",
 				"title": "Shikibu Load audio file"
 			}
-		]
+		],
+		"configuration" : {
+			"title": "Shikibu",
+			"properties": {
+				"shikibu.AZURE_SPEECH_KEY" :{
+					"type" : "string",
+					"default" : "hogohoge",
+					"description": "API Key of Azure Speech Service"
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
